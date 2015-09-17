@@ -52,11 +52,15 @@ public class BuddyInfo {
 	public static void main(String[] args) {
 		BuddyInfo Jimbo = new BuddyInfo("Jimbo","123 Fake Street", "(555) 555-5555");
 		BuddyInfo Name = new BuddyInfo();
+		AddressBook buddies = new AddressBook();
 		Jimbo.printName();
 		Name.setName("John Doe");
 		Name.setAddress("321 Faker Street");
 		Name.setPhoneNumber("(613) 555-5555");
 		Name.printName();
+		buddies.addBuddy(Jimbo);
+		buddies.addBuddy(Name);
+		buddies.removeBuddy(Name);
 	}
 
 }

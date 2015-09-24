@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 //small change
+//new branch
 public class AddressBook {
 	
 	private ArrayList<BuddyInfo> buddies;

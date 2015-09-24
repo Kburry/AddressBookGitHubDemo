@@ -14,15 +14,16 @@ public class AddressBook {
 		}
 	}
 	
-	public void removeBuddy(int index){
+	public BuddyInfo removeBuddy(int index){
 		if(index < buddies.size() && index >= 0)
-			buddies.remove(index);
+			return buddies.remove(index);
+		return null;
 	}
 	
-	public void removeBuddy(BuddyInfo buddy){
-		if (buddy != null && buddies.contains(buddy)){
-			buddies.remove(buddy);
-		}
+	public Boolean removeBuddy(BuddyInfo buddy){
+		if (buddy != null && buddies.contains(buddy))
+			return buddies.remove(buddy);
+		return false;
 	}
 	
 	public static void main(String[] args) {

@@ -49,7 +49,21 @@ public class BuddyInfo {
 		System.out.println("Hello "+this.getName());
 	}
 	
-	public static void main(String[] args) {
+	@Override
+	public String toString(){
+		return "Name: "+name+" Address: "+address+" Phone: "+phoneNumber;
+	}
+	
+	@Override
+	public boolean equals(Object buddy){
+		if(buddy == null || !(buddy instanceof BuddyInfo)){
+			return false;
+		}
+		BuddyInfo b = (BuddyInfo) buddy;
+		return name.equals(b.name) && address.equals(b.address) && phoneNumber.equals(b.phoneNumber);
+	}
+	
+	/*public static void main(String[] args) {
 		BuddyInfo Jimbo = new BuddyInfo("Jimbo","123 Fake Street", "(555) 555-5555");
 		BuddyInfo Name = new BuddyInfo();
 		AddressBook buddies = new AddressBook();
@@ -61,6 +75,6 @@ public class BuddyInfo {
 		buddies.addBuddy(Jimbo);
 		buddies.addBuddy(Name);
 		buddies.removeBuddy(Name);
-	}
+	}*/
 
 }

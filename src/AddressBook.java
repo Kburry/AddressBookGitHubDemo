@@ -10,7 +10,7 @@ public class AddressBook {
 	}
 	
 	public void addBuddy(BuddyInfo buddy){
-		if (buddy != null){
+		if (buddy != null && !buddies.contains(buddy)){
 			buddies.add(buddy);
 		}
 	}
@@ -27,7 +27,18 @@ public class AddressBook {
 		return false;
 	}
 	
-	public static void main(String[] args) {
+	@Override
+	public String toString(){
+		String string = "";
+		System.out.println("there");
+		for(BuddyInfo buddy: buddies){
+			System.out.println("here");
+			string += buddy.toString()+"\n";
+		}
+		return string;
+	}
+	
+	/*public static void main(String[] args) {
 		BuddyInfo Jimbo = new BuddyInfo("Jimbo","123 Fake Street", "(555) 555-5555");
 		BuddyInfo Name = new BuddyInfo();
 		AddressBook buddies = new AddressBook();
@@ -39,6 +50,6 @@ public class AddressBook {
 		buddies.addBuddy(Jimbo);
 		buddies.addBuddy(Name);
 		buddies.removeBuddy(Name);
-	}
+	}*/
 
 }

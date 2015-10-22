@@ -1,17 +1,22 @@
-import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 //small change
 //new branch
 public class AddressBook {
 	
-	private ArrayList<BuddyInfo> buddies;
+	private DefaultListModel<BuddyInfo> buddies;
 	
 	public AddressBook(){
-		buddies = new ArrayList<BuddyInfo>();
+		buddies = new DefaultListModel<BuddyInfo>();
+	}
+	
+	public DefaultListModel<BuddyInfo> getListModel(){
+		return buddies;
 	}
 	
 	public void addBuddy(BuddyInfo buddy){
 		if (buddy != null && !buddies.contains(buddy)){
-			buddies.add(buddy);
+			buddies.addElement(buddy);
 		}
 	}
 	
@@ -23,19 +28,13 @@ public class AddressBook {
 	
 	public Boolean removeBuddy(BuddyInfo buddy){
 		if (buddy != null && buddies.contains(buddy))
-			return buddies.remove(buddy);
+			return buddies.removeElement(buddy);
 		return false;
 	}
 	
 	@Override
 	public String toString(){
-		String string = "";
-		System.out.println("there");
-		for(BuddyInfo buddy: buddies){
-			System.out.println("here");
-			string += buddy.toString()+"\n";
-		}
-		return string;
+		return buddies.toString();
 	}
 	
 	/*public static void main(String[] args) {

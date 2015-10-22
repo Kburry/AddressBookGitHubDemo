@@ -10,21 +10,20 @@ public class MainWindow {
 	private JFrame mainFrame;
 	private JPanel mainPanel;
 	private JPanel fieldsPanel;
-	private JTextArea textArea;
 	private JMenuBar menuBar;
 	private JMenu addressMenu;
 	private JMenuItem save;
 	private JMenuItem create;
-	private JMenuItem display;
 	private JMenuItem addBuddy;
 	private JMenuItem removeBuddy;
+	private JMenuItem editBuddy;
 	private JTextField nameField;
 	private JTextField addressField;
 	private JTextField phoneField;
 	private JLabel nameLabel;
 	private JLabel addressLabel;
 	private JLabel phoneLabel;
-	
+	private JList listView;
 	
 	private AddressBook book;
 	
@@ -35,7 +34,6 @@ public class MainWindow {
 		mainFrame = new JFrame("Address Book");
 		mainPanel = new JPanel(new BorderLayout());
 		fieldsPanel = new JPanel(new GridLayout(3,2));
-		textArea = new JTextArea("Hello");	
 		menuBar = new JMenuBar();
 		
 		nameLabel = new JLabel("Name:");
@@ -45,6 +43,8 @@ public class MainWindow {
 		nameField = new JTextField();
 		addressField = new JTextField();
 		phoneField = new JTextField();
+		
+		listView = new JList<>(book.getListModel());
 		
 		fieldsPanel.add(nameLabel);
 		fieldsPanel.add(nameField);
@@ -64,11 +64,6 @@ public class MainWindow {
 				al->{this.create();}
 				);
 		
-		display = new JMenuItem("display");
-		display.addActionListener(
-				al->{this.display();}
-				);
-		
 		addBuddy = new JMenuItem("Add Buddy");
 		addBuddy.addActionListener(
 				al->{this.addBuddy();}
@@ -79,19 +74,25 @@ public class MainWindow {
 				al->{this.removeBuddy();}
 				);
 		
+		editBuddy = new JMenuItem("edit Buddy");
+		editBuddy.addActionListener(
+				al->{this.editBuddy();}
+				);
 		
 		
 		addressMenu = new JMenu("Address Book");
 		addressMenu.add(save);
 		addressMenu.add(create);
-		addressMenu.add(display);	
 		addressMenu.add(addBuddy);
 		addressMenu.add(removeBuddy);
+		addressMenu.add(editBuddy);
 		
 		menuBar.add(addressMenu);
 		
-		mainPanel.add(textArea, BorderLayout.CENTER);
+		listView.setBorder(BorderFactory.createEtchedBorder());
+		
 		mainPanel.add(fieldsPanel, BorderLayout.SOUTH);
+		mainPanel.add(listView,BorderLayout.CENTER);
 		
 		mainFrame.setContentPane(mainPanel);
 		mainFrame.setJMenuBar(menuBar);
@@ -118,14 +119,23 @@ public class MainWindow {
 	}
 
 	private void removeBuddy() {
-		book.removeBuddy(new BuddyInfo(nameField.getText(), 
-				addressField.getText(), phoneField.getText()));
+		book.removeBuddy((BuddyInfo)listView.getSelectedValue());
+		
+	}
+	
+	private void editBuddy() {
+		
+		BuddyInfo buddy = (BuddyInfo)listView.getSelectedValue();
+		buddy.setAddress(addressField.getText());
+		buddy.setName(nameField.getText());
+		buddy.setPhoneNumber(phoneField.getText());
+		listView.clearSelection();
 		
 	}
 
 
 	private void initialize(){
-		mainFrame.setSize(300, 400);
+		mainFrame.setSize(600, 600);
 		mainFrame.setVisible(true);
 	}
 	
@@ -144,9 +154,6 @@ public class MainWindow {
 
 	}
 	
-	private void display(){
-		textArea.setText(book.toString());
-	}
 }
 
 

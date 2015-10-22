@@ -44,10 +44,6 @@ public class BuddyInfo {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber; }
-
-	public void printName(){
-		System.out.println("Hello "+this.getName());
-	}
 	
 	@Override
 	public String toString(){
@@ -63,18 +59,5 @@ public class BuddyInfo {
 		return name.equals(b.name) && address.equals(b.address) && phoneNumber.equals(b.phoneNumber);
 	}
 	
-	/*public static void main(String[] args) {
-		BuddyInfo Jimbo = new BuddyInfo("Jimbo","123 Fake Street", "(555) 555-5555");
-		BuddyInfo Name = new BuddyInfo();
-		AddressBook buddies = new AddressBook();
-		Jimbo.printName();
-		Name.setName("John Doe");
-		Name.setAddress("321 Faker Street");
-		Name.setPhoneNumber("(613) 555-5555");
-		Name.printName();
-		buddies.addBuddy(Jimbo);
-		buddies.addBuddy(Name);
-		buddies.removeBuddy(Name);
-	}*/
 
 }
